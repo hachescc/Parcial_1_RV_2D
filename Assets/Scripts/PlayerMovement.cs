@@ -9,14 +9,19 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private Animator anim;
     private Vector2 moveInput;
 
     public Vector2 UltimoInput => moveInput;
+
+    [Header("Animación")]
+    public float animDampTime = 0.1f; 
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     void OnMove(InputValue value)
@@ -26,10 +31,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (moveInput.x > 0.01f && spriteRenderer != null)
-            spriteRenderer.flipX = false;
-        else if (moveInput.x < -0.01f && spriteRenderer != null)
-            spriteRenderer.flipX = true;
+
+         if (anim != null)                            
+        {
+        anim.SetFloat("Horizontal", moveInput.x, animDampTime, Time.deltaTime);
+        anim.SetFloat("Vertical", moveInput.y, animDampTime, Time.deltaTime);
+        }    
     }
 
     void FixedUpdate()

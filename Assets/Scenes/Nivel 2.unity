@@ -216,7 +216,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   alResolverDefinitivamente:
@@ -4883,7 +4883,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument:
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   alResolverDefinitivamente:
@@ -6391,40 +6391,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138801620}
   m_CullTransparentMesh: 1
---- !u!1660057539 &9223372036854775807
-SceneRoots:
-  m_ObjectHideFlags: 0
-  m_Roots:
-  - {fileID: 519420032}
-  - {fileID: 619394802}
-  - {fileID: 450201014}
-  - {fileID: 559625156}
-  - {fileID: 1118001746}
-  - {fileID: 2119569596}
-  - {fileID: 214962005}
-  - {fileID: 398398548}
-  - {fileID: 1421122532}
-  - {fileID: 978012599}
-  - {fileID: 1773849950}
-  - {fileID: 766403462}
-  - {fileID: 1066903651}
-  - {fileID: 979400054}
-  - {fileID: 206599079}
-  - {fileID: 426800437}
-  - {fileID: 5273250}
-  - {fileID: 708715243}
-  - {fileID: 1481134955}
-  - {fileID: 551163456}
-  - {fileID: 1107756225}
-  - {fileID: 1935420719}
-  - {fileID: 1004231748}
-  - {fileID: 1529852869}
-  - {fileID: 42543896}
-  - {fileID: 519572227}
-  - {fileID: 1334835620}
-  - {fileID: 373334689}
-  - {fileID: 1888339203}
-  - {fileID: 1912727776}
 --- !u!1 &8880000000000001
 GameObject:
   m_ObjectHideFlags: 0
@@ -6474,7 +6440,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7406af87e3684844c80c36cd37abe753, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnuncioDeRoles
   textoRoles: {fileID: 8880000000000013}
   duracionVisible: 7
@@ -6488,7 +6454,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.85}
@@ -6563,7 +6529,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6586,7 +6552,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ''
+  m_Text: 
 --- !u!222 &8880000000000014
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6595,3 +6561,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8880000000000011}
   m_CullTransparentMesh: 1
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 519420032}
+  - {fileID: 619394802}
+  - {fileID: 450201014}
+  - {fileID: 559625156}
+  - {fileID: 1118001746}
+  - {fileID: 2119569596}
+  - {fileID: 214962005}
+  - {fileID: 398398548}
+  - {fileID: 1421122532}
+  - {fileID: 978012599}
+  - {fileID: 1773849950}
+  - {fileID: 766403462}
+  - {fileID: 1066903651}
+  - {fileID: 979400054}
+  - {fileID: 206599079}
+  - {fileID: 426800437}
+  - {fileID: 5273250}
+  - {fileID: 708715243}
+  - {fileID: 1481134955}
+  - {fileID: 551163456}
+  - {fileID: 1107756225}
+  - {fileID: 1935420719}
+  - {fileID: 1004231748}
+  - {fileID: 1529852869}
+  - {fileID: 42543896}
+  - {fileID: 519572227}
+  - {fileID: 1334835620}
+  - {fileID: 373334689}
+  - {fileID: 1888339203}
+  - {fileID: 1912727776}

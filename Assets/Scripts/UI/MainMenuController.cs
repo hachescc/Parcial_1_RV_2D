@@ -26,12 +26,12 @@ public class MainMenuController : MonoBehaviour
 
     public void CargarNivel1()
     {
-        CargarEscena("Nivel1");
+        CargarEscena("Nivel 1");
     }
 
     public void CargarNivel2()
     {
-        CargarEscena("Nivel2");
+        CargarEscena("Nivel 2");
     }
 
     private void CargarEscena(string nombreEscena)

@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Vector2 moveInput;
 
+    public Vector2 UltimoInput => moveInput;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

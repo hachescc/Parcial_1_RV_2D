@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3344481885428234437}
   - component: {fileID: 2693910638859096996}
   - component: {fileID: 3449398259289049790}
+  - component: {fileID: 9999900000000000001}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -235,6 +236,18 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &9999900000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735288086660309977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0ae6fc7113f0f4d91fa9270dfb35db, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::AsignadorDeRoles
 --- !u!1 &9049056290290570211
 GameObject:
   m_ObjectHideFlags: 0

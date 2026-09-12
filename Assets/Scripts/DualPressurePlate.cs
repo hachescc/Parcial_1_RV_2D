@@ -43,7 +43,7 @@ public class DualPressurePlate : MonoBehaviour, IInteractable
             estaActiva = true;
             Debug.Log("[PressurePlate] ¡ACTIVANDO!");
             alActivar.Invoke();
-            
+
             if (!yaFueResuelto)
             {
                 yaFueResuelto = true;
@@ -55,6 +55,12 @@ public class DualPressurePlate : MonoBehaviour, IInteractable
             estaActiva = false;
             Debug.Log("[PressurePlate] Desactivando");
             alDesactivar.Invoke();
+        }
+        else if (!debeEstarActiva && jugadoresPresionando.Count > 0)
+        {
+            // Hay gente parada ahí pero todavía no alcanza — avisar cuánto falta.
+            int faltan = jugadoresRequeridos - jugadoresPresionando.Count;
+            MensajesEnPantalla.Mostrar($"Falta{(faltan == 1 ? "" : "n")} {faltan} jugador{(faltan == 1 ? "" : "es")} más para activar el mecanismo");
         }
     }
 }

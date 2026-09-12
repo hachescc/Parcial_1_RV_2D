@@ -29,12 +29,27 @@ public class ObjetoTransporteDoble : MonoBehaviour, IInteractable
             }
         }
         Debug.Log($"[TransporteDoble] {jugador.name} agarró el objeto. Total sujetando: {jugadoresSujetando.Count}");
+        AvisarProgreso();
     }
 
     public void OnPlayerExit(GameObject jugador)
     {
         jugadoresSujetando.Remove(jugador);
         Debug.Log($"[TransporteDoble] {jugador.name} soltó el objeto. Total sujetando: {jugadoresSujetando.Count}");
+        AvisarProgreso();
+    }
+
+    private void AvisarProgreso()
+    {
+        int faltan = jugadoresRequeridos - jugadoresSujetando.Count;
+        if (faltan > 0)
+        {
+            MensajesEnPantalla.Mostrar($"Falta{(faltan == 1 ? "" : "n")} {faltan} jugador{(faltan == 1 ? "" : "es")} más para mover el objeto");
+        }
+        else
+        {
+            MensajesEnPantalla.Mostrar("¡Empujen!");
+        }
     }
 
     void FixedUpdate()

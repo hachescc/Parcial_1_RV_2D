@@ -19,9 +19,6 @@ public class LevelTimer : MonoBehaviour
 
     private void Start()
     {
-        // Ya no arranca solo: mientras se lee el anuncio de roles (ver AnuncioDeRoles),
-        // el timer se queda quieto en el valor inicial. Lo activa ReiniciarTimer(),
-        // llamado desde AnuncioDeRoles.alTerminarAnuncio cuando el anuncio se cierra.
         tiempoRestante = duracionNivel;
     }
 

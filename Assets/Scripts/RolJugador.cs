@@ -8,8 +8,6 @@ public enum RolJugador
     Comunicaciones
 }
 
-// Textos y colores de cada rol, centralizados acá para no repetirlos
-// en AsignadorDeRoles, PanelDeRol y AnuncioDeRoles.
 public static class InfoRoles
 {
     public static string NombreRol(RolJugador rol)
@@ -24,7 +22,6 @@ public static class InfoRoles
         }
     }
 
-    // Frase de personalidad + por qué es indispensable. Se muestra en el anuncio de inicio de nivel.
     public static string DescripcionRol(RolJugador rol)
     {
         switch (rol)
@@ -42,15 +39,14 @@ public static class InfoRoles
         }
     }
 
-    // Color del panel que corresponde a cada rol (para pintar el PanelDeRol en el Editor).
     public static Color ColorPanel(RolJugador rol)
     {
         switch (rol)
         {
-            case RolJugador.Ingeniero: return new Color(1f, 0.55f, 0.1f);       // naranja
-            case RolJugador.Medico: return new Color(0.2f, 0.85f, 0.35f);       // verde
-            case RolJugador.Piloto: return new Color(0.25f, 0.55f, 1f);        // azul
-            case RolJugador.Comunicaciones: return new Color(0.7f, 0.3f, 0.9f); // púrpura
+            case RolJugador.Ingeniero: return new Color(1f, 0.55f, 0.1f);
+            case RolJugador.Medico: return new Color(0.2f, 0.85f, 0.35f);
+            case RolJugador.Piloto: return new Color(0.25f, 0.55f, 1f);
+            case RolJugador.Comunicaciones: return new Color(0.7f, 0.3f, 0.9f);
             default: return Color.white;
         }
     }

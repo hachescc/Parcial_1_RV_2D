@@ -27,7 +27,6 @@ public class PlayerSpawner : MonoBehaviour
         "Jugador4_Numpad"
     };
 
-    // Cada jugador es siempre el mismo color, esquema tras esquema, partida tras partida.
     private readonly Color[] coloresJugador =
     {
         new Color(0.90f, 0.15f, 0.15f), // Jugador 1 - Rojo
@@ -38,8 +37,6 @@ public class PlayerSpawner : MonoBehaviour
 
     private readonly string[] nombresColor = { "Rojo", "Azul", "Verde", "Amarillo" };
 
-    // Qué tecla mueve y cuál interactúa, por esquema — para que el anuncio de roles
-    // le diga a cada jugador con qué botón hace las cosas, no solo qué rol le tocó.
     private readonly string[] descripcionesControles =
     {
         "WASD | Interactuar: Shift Izquierdo",
@@ -91,8 +88,6 @@ public class PlayerSpawner : MonoBehaviour
             AsignadorDeRoles asignador = jugador.GetComponent<AsignadorDeRoles>();
             if (asignador == null)
             {
-                // No depende de que el Player.prefab ya tenga el componente guardado:
-                // si no está, lo agrega en el momento sobre esta instancia.
                 asignador = jugador.gameObject.AddComponent<AsignadorDeRoles>();
                 Debug.Log($"[PlayerSpawner] Jugador {i + 1}: AsignadorDeRoles no estaba en el prefab, se agregó en tiempo de ejecución.");
             }
@@ -122,12 +117,6 @@ public class PlayerSpawner : MonoBehaviour
             }
         }
 
-        // Los jugadores no deben chocar físicamente entre ellos: si sus propios
-        // colliders se empujan unos a otros, nunca logran juntarse los 3 o 4 que a
-        // veces piden las placas (con 2 alcanza a "caber" lado a lado, pero al
-        // agregar un tercero se empujan y no llegan a activarla). Se ignoran las
-        // colisiones jugador-contra-jugador en pares, sin tocar la matriz global de
-        // colisiones (así paredes/puertas/placas siguen bloqueando igual que siempre).
         for (int i = 0; i < collidersJugadores.Count; i++)
         {
             for (int j = i + 1; j < collidersJugadores.Count; j++)

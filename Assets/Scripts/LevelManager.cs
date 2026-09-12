@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class LevelManager : MonoBehaviour
 {
     [Header("Configuración del nivel")]
-    public int mecanismosRequeridos = 4; // recomendado múltiplo de 4 para que 25/50/75% caigan en números limpios
-    public int reintentosPermitidos = 2; // cuántas veces pueden PERDER antes del reinicio total (jugar la primera vez no cuenta)
+    public int mecanismosRequeridos = 4; 
+    public int reintentosPermitidos = 2; 
 
     [Header("Checkpoints del nivel (un punto central por etapa)")]
     [Tooltip("Índice 0 = inicio (0%), 1 = 25%, 2 = 50%, 3 = 75%. Arrastra 4 GameObjects vacíos.")]
@@ -21,7 +21,6 @@ public class LevelManager : MonoBehaviour
     public UnityEvent alPerderIntento;
     public UnityEvent alAgotarIntentos;
 
-    // Offsets relativos para formar el mismo patrón de "cuadrado" que ya usan en el spawn inicial
     private static readonly Vector2[] offsetsFormacion = new Vector2[]
     {
         new Vector2(-1, 1),
@@ -32,7 +31,7 @@ public class LevelManager : MonoBehaviour
 
     private int mecanismosResueltos;
     private int mecanismosEnCheckpointActual;
-    private int checkpointActualIndex; // 0 = inicio, 1 = 25%, 2 = 50%, 3 = 75%
+    private int checkpointActualIndex; 
     private int reintentosRestantes;
 
     void Awake()
@@ -61,7 +60,6 @@ public class LevelManager : MonoBehaviour
     {
         float progreso = (float)mecanismosResueltos / mecanismosRequeridos;
 
-        // Revisamos del umbral más alto al más bajo para no "saltarnos" checkpoints intermedios
         if (progreso >= 0.75f && checkpointActualIndex < 3)
         {
             checkpointActualIndex = 3;
@@ -82,7 +80,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    // Llamado cuando se acaba el tiempo del nivel (lo conectaremos en la fase del timer)
     public void PerderIntento()
     {
         reintentosRestantes--;
@@ -99,7 +96,6 @@ public class LevelManager : MonoBehaviour
         MensajesEnPantalla.Mostrar($"Se acabó el tiempo. Reintentos restantes: {reintentosRestantes}", 3f);
         alPerderIntento.Invoke();
 
-        // Revertimos el progreso al valor que tenía cuando se activó el checkpoint actual
         mecanismosResueltos = mecanismosEnCheckpointActual;
         ReposicionarEnCheckpointActual();
     }
@@ -132,6 +128,6 @@ public class LevelManager : MonoBehaviour
         checkpointActualIndex = 0;
         reintentosRestantes = reintentosPermitidos;
         ReposicionarEnCheckpointActual();
-        // Cuando tengan más de un nivel real, aquí también dispararían la carga del Nivel 1.
+       
     }
 }

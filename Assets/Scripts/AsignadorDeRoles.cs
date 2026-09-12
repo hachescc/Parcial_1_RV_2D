@@ -1,9 +1,5 @@
 using UnityEngine;
 
-// Va en el Player.prefab. Guarda la identidad de ESTE jugador para la partida actual:
-// su color fijo (siempre el mismo, Jugador 1 = Rojo, etc.), sus controles (fijos,
-// dependen del esquema que le tocó) y su rol, que PlayerSpawner asigna al azar cada
-// vez que arranca el nivel.
 public class AsignadorDeRoles : MonoBehaviour
 {
     public RolJugador Rol { get; private set; }

@@ -58,8 +58,7 @@ public class PuertaDoble : MonoBehaviour
             Debug.Log("[PuertaDoble] Se soltó una de las dos placas: cerrando puerta.");
             alCerrar.Invoke();
         }
-        // Si permanente == true y ambasActivas pasa a false, no se hace nada:
-        // la puerta se queda abierta para siempre, tal como se decidió para Puerta_G2.
+
     }
 
     private void AbrirPuerta()

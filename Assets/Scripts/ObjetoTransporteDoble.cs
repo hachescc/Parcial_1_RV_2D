@@ -67,5 +67,6 @@ public class ObjetoTransporteDoble : MonoBehaviour, IInteractable
         }
 
         rb.linearVelocity = direccionPromedio * velocidadTransporte;
+        Debug.Log($"[TransporteDoble] Sosteniendo: {jugadoresSujetando.Count}/{jugadoresRequeridos}. Direccion promedio: {direccionPromedio}. Velocidad aplicada: {rb.linearVelocity}");
     }
 }

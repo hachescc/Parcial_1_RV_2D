@@ -15,11 +15,14 @@ public class LevelTimer : MonoBehaviour
     private float tiempoRestante;
     private bool mitadDisparada;
     private bool cuartoDisparado;
-    private bool timerActivo = true;
+    private bool timerActivo = false;
 
     private void Start()
     {
-        ReiniciarTimer();
+        // Ya no arranca solo: mientras se lee el anuncio de roles (ver AnuncioDeRoles),
+        // el timer se queda quieto en el valor inicial. Lo activa ReiniciarTimer(),
+        // llamado desde AnuncioDeRoles.alTerminarAnuncio cuando el anuncio se cierra.
+        tiempoRestante = duracionNivel;
     }
 
     private void Update()
@@ -34,6 +37,7 @@ public class LevelTimer : MonoBehaviour
             mitadDisparada = true;
             alLlegarMitad.Invoke();
             Debug.Log("[LevelTimer] Mitad del tiempo alcanzada.");
+            MensajesEnPantalla.Mostrar("¡Mitad del tiempo!");
         }
 
         if (!cuartoDisparado && progresoRestante <= 0.25f)
@@ -41,6 +45,7 @@ public class LevelTimer : MonoBehaviour
             cuartoDisparado = true;
             alLlegarCuarto.Invoke();
             Debug.Log("[LevelTimer] Cuarto del tiempo alcanzado.");
+            MensajesEnPantalla.Mostrar("¡Queda poco tiempo, apúrense!");
         }
 
         if (tiempoRestante <= 0f)

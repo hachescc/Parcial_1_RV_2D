@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
         mecanismosResueltos++;
         alResolverMecanismo.Invoke();
         Debug.Log($"[LevelManager] Mecanismo resuelto: {mecanismosResueltos}/{mecanismosRequeridos}");
+        MensajesEnPantalla.Mostrar($"Mecanismo resuelto: {mecanismosResueltos}/{mecanismosRequeridos}");
 
         ActualizarCheckpoint();
 
@@ -52,6 +53,7 @@ public class LevelManager : MonoBehaviour
         {
             alCompletarNivel.Invoke();
             Debug.Log("[LevelManager] ¡Nivel completado!");
+            MensajesEnPantalla.Mostrar("¡Nivel completado!", 4f);
         }
     }
 
@@ -89,10 +91,12 @@ public class LevelManager : MonoBehaviour
         if (reintentosRestantes < 0)
         {
             alAgotarIntentos.Invoke();
+            MensajesEnPantalla.Mostrar("Se acabaron los reintentos — reiniciando partida", 3f);
             ReiniciarPartidaCompleta();
             return;
         }
 
+        MensajesEnPantalla.Mostrar($"Se acabó el tiempo. Reintentos restantes: {reintentosRestantes}", 3f);
         alPerderIntento.Invoke();
 
         // Revertimos el progreso al valor que tenía cuando se activó el checkpoint actual

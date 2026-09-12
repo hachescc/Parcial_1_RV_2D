@@ -38,6 +38,16 @@ public class PlayerSpawner : MonoBehaviour
 
     private readonly string[] nombresColor = { "Rojo", "Azul", "Verde", "Amarillo" };
 
+    // Qué tecla mueve y cuál interactúa, por esquema — para que el anuncio de roles
+    // le diga a cada jugador con qué botón hace las cosas, no solo qué rol le tocó.
+    private readonly string[] descripcionesControles =
+    {
+        "WASD | Interactuar: Shift Izquierdo",
+        "Flechas | Interactuar: Shift Derecho",
+        "IJKL | Interactuar: U",
+        "Numpad 8/4/5/6 | Interactuar: Numpad 0"
+    };
+
     void Start()
     {
         Debug.Log("[PlayerSpawner] Start() ejecutándose. playerPrefab=" + (playerPrefab != null ? playerPrefab.name : "NULL")
@@ -54,6 +64,7 @@ public class PlayerSpawner : MonoBehaviour
         Debug.Log("[PlayerSpawner] Orden de roles esta partida: " + string.Join(", ", rolesDisponibles));
 
         List<AsignadorDeRoles> jugadoresParaAnuncio = new List<AsignadorDeRoles>();
+        List<Collider2D> collidersJugadores = new List<Collider2D>();
 
         for (int i = 0; i < esquemas.Length; i++)
         {
@@ -87,8 +98,18 @@ public class PlayerSpawner : MonoBehaviour
             }
 
             RolJugador rolAsignado = rolesDisponibles[i % rolesDisponibles.Count];
-            asignador.Configurar($"Jugador {i + 1}", nombresColor[i % nombresColor.Length], rolAsignado);
+            asignador.Configurar(
+                $"Jugador {i + 1}",
+                nombresColor[i % nombresColor.Length],
+                descripcionesControles[i % descripcionesControles.Length],
+                rolAsignado);
             jugadoresParaAnuncio.Add(asignador);
+
+            Collider2D colliderJugador = jugador.GetComponent<Collider2D>();
+            if (colliderJugador != null)
+            {
+                collidersJugadores.Add(colliderJugador);
+            }
 
             if (cameraFollow != null)
             {
@@ -98,6 +119,20 @@ public class PlayerSpawner : MonoBehaviour
             if (levelManager != null)
             {
                 levelManager.jugadoresActivos.Add(jugador.transform);
+            }
+        }
+
+        // Los jugadores no deben chocar físicamente entre ellos: si sus propios
+        // colliders se empujan unos a otros, nunca logran juntarse los 3 o 4 que a
+        // veces piden las placas (con 2 alcanza a "caber" lado a lado, pero al
+        // agregar un tercero se empujan y no llegan a activarla). Se ignoran las
+        // colisiones jugador-contra-jugador en pares, sin tocar la matriz global de
+        // colisiones (así paredes/puertas/placas siguen bloqueando igual que siempre).
+        for (int i = 0; i < collidersJugadores.Count; i++)
+        {
+            for (int j = i + 1; j < collidersJugadores.Count; j++)
+            {
+                Physics2D.IgnoreCollision(collidersJugadores[i], collidersJugadores[j], true);
             }
         }
 

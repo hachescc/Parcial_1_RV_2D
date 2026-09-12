@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,7 +13,10 @@ public class AnuncioDeRoles : MonoBehaviour
     [SerializeField] private Text textoRoles;
 
     [Header("Segundos que se queda visible el anuncio")]
-    [SerializeField] private float duracionVisible = 7f;
+    [SerializeField] private float duracionVisible = 15f;
+
+    [Header("Se dispara cuando el anuncio se termina de ocultar (ej. arrancar el timer)")]
+    public UnityEvent alTerminarAnuncio;
 
     public void MostrarRoles(List<AsignadorDeRoles> jugadores)
     {
@@ -34,7 +38,7 @@ public class AnuncioDeRoles : MonoBehaviour
             string contenido = "REPARTO DE ROLES\n\n";
             foreach (AsignadorDeRoles jugador in jugadores)
             {
-                contenido += $"{jugador.NombreJugador} ({jugador.NombreColor}): {jugador.NombreRol}\n{jugador.DescripcionRol}\n\n";
+                contenido += $"{jugador.NombreJugador} ({jugador.NombreColor}) — {jugador.DescripcionControles}\n{jugador.NombreRol}: {jugador.DescripcionRol}\n\n";
             }
             textoRoles.text = contenido;
             Debug.Log("[AnuncioDeRoles] Texto asignado:\n" + contenido);
@@ -53,5 +57,7 @@ public class AnuncioDeRoles : MonoBehaviour
     {
         yield return new WaitForSeconds(segundos);
         gameObject.SetActive(false);
+        Debug.Log("[AnuncioDeRoles] Anuncio terminado, disparando alTerminarAnuncio (arranca el timer).");
+        alTerminarAnuncio.Invoke();
     }
 }

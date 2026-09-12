@@ -27,9 +27,50 @@ public class PanelDeRol : MonoBehaviour, IInteractable
     [Header("Progreso del nivel (se dispara UNA sola vez, la primera vez que se activa)")]
     public UnityEvent alResolverDefinitivamente;
 
+    [Header("Revelado por proximidad (para guiarse con el audio 360, no a la vista)")]
+    [Tooltip("Si está marcado, el panel arranca invisible y solo se muestra cuando el jugador con el rol correcto está lo bastante cerca. Pensado para usarse junto a un AudioSource posicional en el mismo objeto (igual configuración que FuenteSonidoOculta) — el jugador correcto se guía por el sonido hasta que el panel se revela.")]
+    public bool ocultoHastaAcercarse = false;
+    public float radioRevelado = 4f;
+
     private bool yaFueResuelto;
     private bool estaActiva;
+    private bool revelado = true;
+    private SpriteRenderer sr;
     private readonly HashSet<GameObject> jugadoresCorrectosSosteniendo = new HashSet<GameObject>();
+
+    void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        if (ocultoHastaAcercarse && sr != null)
+        {
+            revelado = false;
+            sr.enabled = false;
+        }
+    }
+
+    void Update()
+    {
+        if (!ocultoHastaAcercarse || sr == null) return;
+
+        bool jugadorCorrectoCerca = false;
+        Collider2D[] cercanos = Physics2D.OverlapCircleAll(transform.position, radioRevelado);
+        foreach (Collider2D col in cercanos)
+        {
+            AsignadorDeRoles asignadorCercano = col.GetComponent<AsignadorDeRoles>();
+            if (asignadorCercano != null && asignadorCercano.Rol == rolRequerido)
+            {
+                jugadorCorrectoCerca = true;
+                break;
+            }
+        }
+
+        if (jugadorCorrectoCerca != revelado)
+        {
+            revelado = jugadorCorrectoCerca;
+            sr.enabled = revelado;
+            Debug.Log($"[PanelDeRol] Panel de {InfoRoles.NombreRol(rolRequerido)} {(revelado ? "revelado — jugador correcto cerca" : "oculto de nuevo")}.");
+        }
+    }
 
     public void OnPlayerEnter(GameObject jugador)
     {
@@ -37,6 +78,7 @@ public class PanelDeRol : MonoBehaviour, IInteractable
         if (asignador == null || asignador.Rol != rolRequerido)
         {
             Debug.Log($"[PanelDeRol] {jugador.name} intentó operar el panel de {InfoRoles.NombreRol(rolRequerido)}, pero no tiene ese rol esta partida.");
+            MensajesEnPantalla.Mostrar($"Este panel necesita al {InfoRoles.NombreRol(rolRequerido)}");
             return;
         }
 
